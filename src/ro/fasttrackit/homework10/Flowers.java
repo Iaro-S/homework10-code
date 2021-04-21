@@ -1,35 +1,44 @@
 package ro.fasttrackit.homework10;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Flowers {
     public static void main(String[] args) {
-        getAll ();
-        Collection<String> bouquet = new ArrayList<> ();
 
-        bouquet.add ("trandafir");
-        bouquet.add ("lalele");
-        bouquet.add ("crizanteme");
-        bouquet.add ("trandafir");
-        bouquet.add ("trandafir");
         System.out.println (bouquet);
-
-        bouquet.remove ("trandafir");
+        addFlower ("Rose");
+        addFlower ("Gladiolus");
         System.out.println (bouquet);
-
+        removeFlower ("Gladiolus");
+        removeFlower ("Anemone");
+        System.out.println (bouquet);
+        addFlower ("Anemone");
+        System.out.println (bouquet);
+        System.out.println ("get all: " + getAll ());
     }
 
-    private static void getAll() {
+    static Collection<String> bouquet = new ArrayList<> (List.of ("Tulip ",
+            "Orchid",
+            "Hyacinth ",
+            "Gladiolus"));
+
+    private static void addFlower(String flower) {
+        if (!bouquet.contains (flower)) {
+            bouquet.add (flower);
+        } else {
+            System.out.println ("The flower is already in bouquet!");
+        }
+    }
+
+    private static Collection<String> getAll() {
+        return bouquet;
+    }
+
+    private static void removeFlower(String flower) {
+        if (!bouquet.contains (flower)) {
+            bouquet.remove (flower);
+        } else {
+            System.out.println ("Flower not found in bouquet,nothing to remove!");
+        }
     }
 }
-/*
-2) Create an objects that model buquet of flowers. Each flower has to be unique. We don't care how the flowers are ordered
-
-- getAll(): Collection<String>  - returns all the flowers
-
-- add(String)    - adds a flower (remember to keep them unique)
-
-- remove(String) - removes a flower
- */
