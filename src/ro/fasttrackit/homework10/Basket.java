@@ -54,7 +54,6 @@ public class Basket {
     }
 
     public static int position(String fruit) {
-        //return fruits.indexOf (fruit);
         for (String myFruit : fruits) {
             if (fruit.equals (myFruit)) {
                 return fruits.indexOf (fruit);
