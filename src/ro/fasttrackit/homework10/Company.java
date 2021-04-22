@@ -17,7 +17,7 @@ public class Company {
         this.employees.addAll (employees);
     }
 
-    public List getName(String filterName) {
+    public List getPerson(String filterName) {
         List result = new ArrayList ();
         for (Person person : employees) {
             if (person.getName ().contains (filterName)) {
@@ -47,7 +47,7 @@ public class Company {
         return result;
     }
 
-    public List<Person> getProfession(String profession) {
+    public List getProfession(String profession) {
         List result = new ArrayList ();
         for (Person person : employees) {
             if (person.getPosition ().equals (profession)) {

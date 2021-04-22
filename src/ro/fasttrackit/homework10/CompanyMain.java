@@ -8,7 +8,7 @@ public class CompanyMain {
                 new Person ("Florin", 40, "manager"),
                 new Person ("Popescu Ana", 26, "hr"),
                 new Person ("Darius", 40, "trainer"),
-                new Person ("Ionescu Ana",21,"secretary")
+                new Person ("Ionescu Ana", 21, "secretary")
         ));
 
         System.out.println ("Manager: " + company.getManager ());
@@ -16,7 +16,7 @@ public class CompanyMain {
 
         System.out.println ("People on position trainer: " + company.getProfession ("trainer"));
 
-        System.out.println ("People with name Ana" + company.getName ("Ana"));
+        System.out.println ("People with name Ana" + company.getPerson ("Ana"));
     }
 }
 
