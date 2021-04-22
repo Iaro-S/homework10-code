@@ -3,88 +3,82 @@ package ro.fasttrackit.homework10;
 import java.util.*;
 
 public class Basket {
-    public static void main(String[] args) {
-        System.out.println ("Basket content:" + fruits);
-        System.out.println ("Fruit found in basket: " + findFruits ("pere"));
-        System.out.println ("Fruit found in basket: " + findFruits ("cirese"));
+    private final List<String> fruits;
 
-        System.out.println ("\n" + fruits);
-        System.out.println ("Fruit is on position: " + position ("prune"));
-        System.out.println ("Fruit is on position: " + position ("cirese"));
-
-        System.out.println ("\n" + "Fruit found an removed from basket: " + removeFruits ("pere"));
-        System.out.println ("Fruit found an removed from basket: " + removeFruits ("cirese"));
-        System.out.println ("Basket content after removal: " + fruits);
-
-        addFruits ("banane");
-        System.out.println ("\n" + "Basket content after addition: " + fruits);
-        addFruits ("struguri");
-        addFruits ("banane");
-        System.out.println ("\n" + "Basket content" + fruits);
-        System.out.println ("Unique basket content" + distinct (fruits));
-
-        System.out.println ("\n" + "Basket contains " + countFruits () + " fruits.");
-        System.out.println ("\n" + "Basket contains " + customCountFruits () + " fruits.");
+    public Basket() {
+        this (new ArrayList<> ());
     }
 
-    private static final List<String> fruits = new ArrayList<> (List.of ("mere",
-            "pere",
-            "prune",
-            "struguri",
-            "zmeura",
-            "mere",
-            "capsuni",
-            "pere"));
+    public Basket(Collection<String> fruits) {
+        this.fruits = new ArrayList<> ();
+        this.fruits.addAll (fruits);
+    }
 
-    public static boolean findFruits(String fruit) {
+    public boolean find(String fruit) {
         for (String myFruit : fruits) {
-            if (fruit.equals (myFruit)) {
+            if (myFruit.equals (fruit)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean removeFruits(String fruit) {
-        if (findFruits (fruit)) {
-            fruits.remove (fruit);
-            return true;
+    public boolean remove(String fruit) {
+        //   return fruits.remove (fruit);
+        Iterator<String> iterator = fruits.iterator ();
+        boolean removed = false;
+        while (iterator.hasNext ()) {
+            String myFruit = iterator.next ();
+            if (myFruit.equals (fruit)) {
+                iterator.remove ();
+                removed = true;
+
+            }
         }
-        return false;
+        return removed;
     }
 
-    public static int position(String fruit) {
-        for (String myFruit : fruits) {
-            if (fruit.equals (myFruit)) {
-                return fruits.indexOf (fruit);
+    public int getPosition(String fruit) {
+        for (int i = 0; i < fruits.size (); i++) {
+            if (fruits.get (i).equals (fruit)) {
+                return i;
             }
         }
         return -1;
+        //return fruits.indexOf (fruit);
     }
 
-    public static Set<String> distinct(Collection<String> fruits) {
-        Set<String> distinctBasket = new HashSet<> ();
-        for (String myFruit :
-                fruits) {
-            distinctBasket.add (myFruit);
+    public List<Integer> getPositions(String fruit) {
+        List<Integer> result = new ArrayList<> ();
+        for (int i = 0; i < fruits.size (); i++) {
+            if (fruits.get (i).equals (fruit)) {
+                result.add (i);
+            }
         }
-        return distinctBasket;
+        return result;
     }
 
-    public static String addFruits(String fruit) {
-        fruits.add (fruit);
-        return String.valueOf (fruits);
+    public Collection<String> distinct() {
+        return new HashSet<> (fruits);
     }
 
-    public static int countFruits() {
+    public Collection<String> distinct2() {
+        List<String> result = new ArrayList<> ();
+        for (String myFruit : fruits) {
+            if (!result.contains (myFruit)) {
+                result.add (myFruit);
+            }
+        }
+        return result;
+    }
+
+    public void add(String fruit) {
+        this.fruits.add (fruit);
+    }
+
+    public int count() {
         return fruits.size ();
     }
-
-    public static int customCountFruits() {
-        int count = 0;
-        for (String myFruit : fruits) {
-            count++;
-        }
-        return count;
-    }
 }
+
+
